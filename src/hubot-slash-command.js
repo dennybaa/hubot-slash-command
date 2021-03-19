@@ -25,8 +25,6 @@ module.exports = (robot) => {
       return;
     }
 
-    console.log(req.body)
-
     const dict = {
       robot_name: robot.name,
       robot_alias: robot.alias,
@@ -43,6 +41,9 @@ module.exports = (robot) => {
     };
 
     const user = robot.brain.userForId(req.body.user_id);
+    console(`user_id - ${req.body.user_id}`)
+    console(user)
+
     user.name = req.body.user_name;
     // Set channel_id for private channel of Slack
     if (req.get('user-agent').match(/slack/i)) {
@@ -52,18 +53,14 @@ module.exports = (robot) => {
     }
     robot.receive(new TextMessage(user, applyTemplate(receiveMessage, dict)));
 
+    console.log(new TextMessage(user, applyTemplate(receiveMessage, dict)))
+
     const msg = {};
     msg.response_type = responseType;
     const message = applyTemplate(responseMessage, dict);
     msg.text = message;
     res.setHeader('Content-Type', 'application/json');
     res.status(200).send(msg);
-    res.end();
-  });
-
-  robot.router.get('/hubot-slash-command', (req, res) => {
-    console.log(req)
-    res.status(200).send("");
     res.end();
   });
 };
