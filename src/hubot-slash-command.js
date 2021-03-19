@@ -25,6 +25,8 @@ module.exports = (robot) => {
       return;
     }
 
+    console.log(req.body)
+
     const dict = {
       robot_name: robot.name,
       robot_alias: robot.alias,
