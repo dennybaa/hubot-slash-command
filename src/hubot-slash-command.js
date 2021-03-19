@@ -41,8 +41,8 @@ module.exports = (robot) => {
     };
 
     const user = robot.brain.userForId(req.body.user_id);
-    console(`user_id - ${req.body.user_id}`)
-    console(user)
+    console.log(`user_id - ${req.body.user_id}`)
+    console.log(user)
 
     user.name = req.body.user_name;
     // Set channel_id for private channel of Slack
