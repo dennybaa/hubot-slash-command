@@ -41,8 +41,6 @@ module.exports = (robot) => {
     };
 
     const user = robot.brain.userForId(req.body.user_id);
-    console.log(`user_id - ${req.body.user_id}`)
-    console.log(user)
 
     user.name = req.body.user_name;
     // Set channel_id for private channel of Slack
@@ -52,8 +50,6 @@ module.exports = (robot) => {
       user.room = req.body.channel_name;
     }
     robot.receive(new TextMessage(user, applyTemplate(receiveMessage, dict)));
-
-    console.log(new TextMessage(user, applyTemplate(receiveMessage, dict)))
 
     const msg = {};
     msg.response_type = responseType;
