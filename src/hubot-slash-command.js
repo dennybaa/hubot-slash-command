@@ -60,6 +60,12 @@ module.exports = (robot) => {
     res.status(200).send(msg);
     res.end();
   });
+
+  robot.router.get('/hubot-slash-command', (req, res) => {
+    console.log(req)
+    res.status(200).send("");
+    res.end();
+  });
 };
 
 function validateToken(tokens, token) {
